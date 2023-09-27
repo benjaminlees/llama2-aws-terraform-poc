@@ -5,23 +5,15 @@ resource "aws_sagemaker_domain" "main" {
   subnet_ids  = [aws_subnet.main.id]
 
   default_user_settings {
-    execution_role = aws_iam_role.sagemaker.arn
+    execution_role = aws_iam_role.sagemaker_domain.arn
   }
 }
 
-resource "aws_iam_role" "sagemaker" {
-  name               = "sagemaker"
-  path               = "/"
-  assume_role_policy = data.aws_iam_policy_document.sagemaker.json
-}
+resource "aws_sagemaker_user_profile" "test" {
+  domain_id         = aws_sagemaker_domain.main.id
+  user_profile_name = "test"
 
-data "aws_iam_policy_document" "sagemaker" {
-  statement {
-    actions = ["sts:AssumeRole"]
-
-    principals {
-      type        = "Service"
-      identifiers = ["sagemaker.amazonaws.com"]
-    }
+  user_settings {
+    execution_role = aws_iam_role.sagemaker_user.arn
   }
 }

@@ -1,7 +1,7 @@
 terraform {
   backend "s3" {
-    bucket = "llamba-2-terraform-state"
-    key    = "state"
-    region = "eu-west-2"
+    bucket = "llamba-terraform-state"
+    key    = "eu-west-1"
+    region = "eu-west-1"
   }
 }
