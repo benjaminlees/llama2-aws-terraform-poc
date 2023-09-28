@@ -8,16 +8,37 @@ data "aws_iam_policy_document" "sagemaker" {
     }
   }
 }
+
 data "aws_iam_policy_document" "sagemaker_user" {
   statement {
-    effect    = "Allow"
-    actions   = ["sagemaker:CreateApp"]
+    effect = "Allow"
+    actions = [
+      "sagemaker:CreateApp",
+      "sagemaker:AddTags",
+      "sagemaker:ListTags",
+      "sagemaker:CreateModel",
+      "sagemaker:CreateEndpointConfig",
+      "sagemaker:DescribeEndpointConfig",
+      "sagemaker:CreateEndpoint",
+      "sagemaker:DescribeEndpoint",
+      "sagemaker:DescribeModel",
+      "sagemaker:ListCompilationJobs"
+    ]
+    // resources should be more specific here for better security
     resources = ["*"]
   }
+
+  statement {
+    effect  = "Allow"
+    actions = ["iam:PassRole"]
+    // resources should be more specific here for better security
+    resources = ["*"]
+  }
+
   statement {
     effect    = "Allow"
     actions   = ["s3:ListBucket", "s3:GetObject*"]
-    resources = ["arn:aws:s3:::jumpstart-cache-prod-eu-west-2", "arn:aws:s3:::jumpstart-cache-prod-eu-west-2/*"]
+    resources = ["arn:aws:s3:::jumpstart-cache-prod-eu-west-1", "arn:aws:s3:::jumpstart-cache-prod-eu-west-1/*"]
   }
 }
 
