@@ -4,3 +4,6 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+# ignore ziped file
+lambda_function_payload.zip
