@@ -22,7 +22,8 @@ data "aws_iam_policy_document" "sagemaker_user" {
       "sagemaker:CreateEndpoint",
       "sagemaker:DescribeEndpoint",
       "sagemaker:DescribeModel",
-      "sagemaker:ListCompilationJobs"
+      "sagemaker:ListCompilationJobs",
+      "sagemaker:ListMonitoringSchedules"
     ]
     // resources should be more specific here for better security
     resources = ["*"]
@@ -43,19 +44,19 @@ data "aws_iam_policy_document" "sagemaker_user" {
 }
 
 resource "aws_iam_role" "sagemaker_domain" {
-  name               = "sagemaker-domain"
+  name               = "${var.project_name}-sagemaker-domain"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.sagemaker.json
 }
 
 resource "aws_iam_role" "sagemaker_user" {
-  name               = "sagemaker-user"
+  name               = "${var.project_name}-sagemaker-user"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.sagemaker.json
 }
 
 resource "aws_iam_policy" "sagemaker_user" {
-  name   = "sagemaker-user"
+  name   = "${var.project_name}-sagemaker-user"
   policy = data.aws_iam_policy_document.sagemaker_user.json
 }
 
