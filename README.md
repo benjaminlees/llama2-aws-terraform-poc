@@ -1,4 +1,4 @@
-# Llama2 Demo Setup
+# Llama 2 AWS and Terraform POC
 
 This repository provides a guide for deploying a [Llama 2](https://ai.meta.com/llama/) model using [AWS](https://aws.amazon.com/what-is-aws/) and [Terraform](https://developer.hashicorp.com/terraform/intro). The process involves creating a SageMaker domain, user profile, and a Lambda function with permissions to invoke a SageMaker endpoint exposed via [API Gateway](https://docs.aws.amazon.com/apigateway/latest/developerguide/welcome.html).
 
