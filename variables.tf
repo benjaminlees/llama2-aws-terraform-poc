@@ -5,7 +5,7 @@ variable "region" {
 
 variable "model_endpoint" {
   type    = string
-  default = "jumpstart-dft-llama2-poc"
+  default = "jumpstart-dft-dft-llama2-pocsss"
 }
 
 variable "project_name" {

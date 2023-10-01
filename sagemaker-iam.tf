@@ -23,7 +23,8 @@ data "aws_iam_policy_document" "sagemaker_user" {
       "sagemaker:DescribeEndpoint",
       "sagemaker:DescribeModel",
       "sagemaker:ListCompilationJobs",
-      "sagemaker:ListMonitoringSchedules"
+      "sagemaker:ListMonitoringSchedules",
+      "sagemaker:ListEndpoints"
     ]
     // resources should be more specific here for better security
     resources = ["*"]
